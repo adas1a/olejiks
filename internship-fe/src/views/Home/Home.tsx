@@ -23,7 +23,6 @@ const Home: FC = () => {
     <div>
       <h1>OLEJIX &reg;</h1>
       Advertisements count: {advertisements?.length}
-      <AddNewAdvert />
     </div>
   );
 };
