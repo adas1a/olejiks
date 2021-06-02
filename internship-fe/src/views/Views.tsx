@@ -12,7 +12,7 @@ const Views: FC = () => (
       <h1>About</h1>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi consectetur harum incidunt, magnam omnis?
     </Route>
-    <Route><AddNewAdvert/></Route>
+    <Route path="/new"><AddNewAdvert/></Route>
   </Switch>
 );
 

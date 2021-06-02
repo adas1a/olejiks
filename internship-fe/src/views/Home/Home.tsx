@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { Advertisement } from '../../interfaces/Advertisement';
-import AddNewAdvert from '../../components/AddNewAdvert/AddNewAdvert';
 
 const Home: FC = () => {
   const [advertisements, setAdvertisements] = useState<Advertisement[]>();
