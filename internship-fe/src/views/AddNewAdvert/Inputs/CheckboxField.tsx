@@ -15,7 +15,7 @@ export const CheckboxField: React.FC<CheckboxFieldInterface> = ({ label, ...prop
       <input className={` mr-1 shadow-none ${meta.touched && meta.error && 'is-invalid'}`}
              {...field} {...props}
              autoComplete="off"
-  />
+      />
       <label htmlFor={field.name}>{label}</label>
 
       <ErrorMessage component="div" name={field.name} className="error" />
