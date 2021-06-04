@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import {Button, Container} from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import  { TextField }  from '../../components/inputs/TextField';
 import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
@@ -18,9 +18,7 @@ const initialValues = {
   acceptTerms:false,
 };
 
-const AddNewAdvert = () => {
-
-  return (
+const AddNewAdvert = () => (
     <Formik
       initialValues={initialValues}
       validationSchema={AddNewFormValidation}
@@ -53,5 +51,4 @@ const AddNewAdvert = () => {
         )}
       </Formik>
   );
-};
 export default AddNewAdvert;
