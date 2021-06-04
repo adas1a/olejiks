@@ -1,16 +1,17 @@
 import React from 'react';
-import { ErrorMessage, useField } from 'formik';
+import {ErrorMessage, useField} from 'formik';
 import {Form} from 'react-bootstrap';
 
-interface TextFieldInterface{
-  label:string
-  name:string
-  type?:string
-  as?:string
+interface TextFieldInterface {
+  label: string;
+  name: string;
+  type?: 'text' | 'number' | 'email' | 'phone';
+  inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
 }
-export const TextField: React.FC<TextFieldInterface> = ({ label, ...props }) =>{
 
-const [field, meta] = useField(props);
+export const TextField: React.FC<TextFieldInterface> = ({label, ...props}) => {
+
+  const [field, meta] = useField(props);
 
   return (
     <div className="mb-2">

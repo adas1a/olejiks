@@ -8,7 +8,7 @@ const Home: FC = () => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const { data } = await Axios.get<Advertisement[]>('/v1/advertisements');
+        const { data } = await Axios.get<Advertisement[]>('/api/advertisement');
         setAdvertisements(data);
       } catch (e) {
         // eslint-disable-next-line no-console

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Container } from 'react-bootstrap';
+import {Button, Container} from 'react-bootstrap';
 import  { TextField }  from '../../components/inputs/TextField';
 import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
@@ -29,7 +29,6 @@ const AddNewAdvert = () => {
       }}
     >
       {(formik) => (
-        <div>
           <Container>
             <Form>
               <h2>Add an advert</h2>
@@ -48,11 +47,9 @@ const AddNewAdvert = () => {
 
               <CheckboxField label="I consent to the use by the OLEJIKS Group sp. Z oo of electronic communication means and telecommunications terminal devices for the purpose of sending me commercial information and conducting marketing (e.g. newsletter, SMS messages) by the OLEJIKS Group sp. Z oo, related entities and business partners."
                              type='checkbox'  name='acceptTerms'/>
-              <button className="btn btn-dark mt-3" type="submit" >Submit</button>
+              <Button className="mt-3" variant="primary" type="submit" >Submit</Button>
             </Form>
           </Container>
-        </div>
-
         )}
       </Formik>
   );
