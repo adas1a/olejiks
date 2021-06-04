@@ -1,5 +1,6 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
+import {Form} from 'react-bootstrap';
 
 interface TextFieldInterface{
   label:string
@@ -19,8 +20,13 @@ const [field, meta] = useField(props);
         {...field} {...props}
         autoComplete="off"
       />
-      <ErrorMessage component="div" name={field.name} className="error" />
-
+      <ErrorMessage name={field.name}>
+        {(err) => (
+          <Form.Control.Feedback type="invalid">
+            {err}
+          </Form.Control.Feedback>
+        )}
+      </ErrorMessage>
     </div>
   )
 }

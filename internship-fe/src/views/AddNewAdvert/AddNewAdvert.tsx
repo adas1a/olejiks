@@ -1,11 +1,11 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Container } from 'react-bootstrap';
-import  { TextField }  from './Inputs/TextField';
-import { CategoryField } from './Inputs/CategoryField';
-import { DescriptionField } from './Inputs/DescriptionField';
-import { CheckboxField } from './Inputs/CheckboxField';
-import { AddNewFormValidation } from './AddNewFormValidation';
+import  { TextField }  from '../../components/inputs/TextField';
+import { CategoryField } from '../../components/inputs/CategoryField';
+import { DescriptionField } from '../../components/inputs/DescriptionField';
+import { CheckboxField } from '../../components/inputs/CheckboxField';
+import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidation';
 
 const initialValues = {
   advertTitle: '',

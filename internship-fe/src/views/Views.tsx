@@ -8,10 +8,6 @@ const Views: FC = () => (
     <Route exact path="/">
       <Home />
     </Route>
-    <Route path="/about">
-      <h1>About</h1>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi consectetur harum incidunt, magnam omnis?
-    </Route>
     <Route path="/new"><AddNewAdvert/></Route>
   </Switch>
 );
