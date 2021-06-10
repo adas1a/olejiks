@@ -10,7 +10,6 @@ interface CategoryFieldInterface {
 export const CategoryField: React.FC<CategoryFieldInterface> = ({label, ...props}) => {
 
   const [field, meta] = useField(props);
-  console.log(field)
   return (
     <div className="mb-2">
       <label htmlFor={field.name}>{label}</label>
@@ -20,9 +19,9 @@ export const CategoryField: React.FC<CategoryFieldInterface> = ({label, ...props
         autoComplete="off"
       >
         <option value=''>Select Category</option>
-        <option value='electronics' id='electronics'>Electronics</option>
-        <option value='cars' id='cars'>Cars</option>
-        <option value='dupa' id='dupa'>Dupa</option>
+        <option value='1' id='electronics'>Electronics</option>
+        <option value='2' id='cars'>Cars</option>
+        <option value='3' id='dupa'>Dupa</option>
       </select>
       <ErrorMessage name={field.name}>
         {(err) => (
@@ -32,7 +31,6 @@ export const CategoryField: React.FC<CategoryFieldInterface> = ({label, ...props
         )}
       </ErrorMessage>
 
-
     </div>
-  )
-}
+  );
+};

@@ -29,5 +29,5 @@ export const DescriptionField: React.FC<DescriptionFieldInterface> = ({ label, .
       </ErrorMessage>
 
     </div>
-  )
-}
+  );
+};

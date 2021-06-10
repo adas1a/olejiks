@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import Axios from 'axios';
+import { Vinyl } from 'react-bootstrap-icons';
 import { Advertisement } from '../../interfaces/Advertisement';
 
 const Home: FC = () => {
@@ -22,6 +23,10 @@ const Home: FC = () => {
     <div>
       <h1>OLEJIX &reg;</h1>
       Advertisements count: {advertisements?.length}
+      {advertisements?.map((item)=> (
+        <div key={item.id}>{item.title}</div>
+      ))}
+
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import * as Yup from 'yup';
 
-
 const phoneRegExp = /^\d{9}$/;
 
 export const AddNewFormValidation = Yup.object({
-  advertTitle: Yup.string()
+  title: Yup.string()
     .min(16, 'The title cannot be shorter than 16 characters.')
     .max(70, 'Title must be less than 70 characters')
     .required('The title is the most important, don\'t forget about it'),
@@ -17,12 +16,12 @@ export const AddNewFormValidation = Yup.object({
   location: Yup.string()
     .min(3, 'At least 3 characters long')
     .required('Location is required'),
-  sellerName: Yup.string()
-    .min(3, 'At least 3 characters long')
-    .required('Seller name is required'),
+  // sellerName: Yup.string()
+  //   .min(3, 'At least 3 characters long')
+  //   .required('Seller name is required'),
   email: Yup.string()
     .email('Email is invalid')
     .required('Email is required'),
-  number: Yup.string().matches(phoneRegExp, 'Phone number is not valid, must be 9 numbers').required('Number is required'),
-  acceptTerms: Yup.bool().oneOf([true], 'Don\'t forget to accept'),
+  phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid, must be 9 numbers').required('Number is required'),
+  // acceptTerms: Yup.bool().oneOf([true], 'Don\'t forget to accept'),
 });

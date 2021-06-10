@@ -1,5 +1,6 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
+import { Form } from 'react-bootstrap';
 
 interface CheckboxFieldInterface{
   label:string
@@ -18,9 +19,14 @@ export const CheckboxField: React.FC<CheckboxFieldInterface> = ({ label, ...prop
       />
       <label htmlFor={field.name}>{label}</label>
 
-      <ErrorMessage component="div" name={field.name} className="error" />
+      <ErrorMessage name={field.name}>
+        {(err) => (
+          <Form.Control.Feedback type="invalid">
+            {err}
+          </Form.Control.Feedback>
+        )}
+      </ErrorMessage>
 
     </div>
-)
-}
-
+);
+};
