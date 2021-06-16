@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:13.2
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=internship-be
+      - POSTGRES_PASSWORD=internship-be
+      - POSTGRES_DB=internship-be
+
+  internship-be:
+    image: gcr.io/internship-zsi-2021/internship-be:master
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres-volume:
