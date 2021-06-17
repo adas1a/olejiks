@@ -10,12 +10,12 @@ const Home: FC = () => {
   const fetchAd = async():Promise<number> =>{
     const { status } = await Axios.get<Advertisement[]>('/api/advertisement');
     return status;
-  }
+  };
 
   const handleClick = async(): Promise<void> => {
-    const status = await fetchAd()
-    alert(status)
-  }
+    const status = await fetchAd();
+    alert(status);
+  };
 
   useEffect( () => {
     const fetchData = async (): Promise<void> => {

@@ -1,6 +1,6 @@
 export interface AddNewAdvertModel {
   advertTitle: string;
-  category: string;
+  category: number;
   description: string;
   location: number;
   person: string;

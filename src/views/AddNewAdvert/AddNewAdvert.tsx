@@ -10,7 +10,7 @@ import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidatio
 
 const initialValues = {
   title: '',
-  category: 2,
+  category: 0,
   description:'',
   photos:[0],
   location:0,
@@ -20,22 +20,14 @@ const initialValues = {
   // acceptTerms:false,
 };
 
-// title: 'Działa',
-//   category: 1223,
-//   photos:[0],
-//   description:'asdasda123sdasdasdasdaaaaaaaaaaaasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttttestttttttttttttttttttttttttttttttttttttttttt',
-//   location:2,
-//   email:'siema222wgg@vp.pl',
-//   phone:'999828777',
-
 const AddNewAdvert = () => (
   <Formik
     initialValues={initialValues}
     validationSchema={AddNewFormValidation}
     onSubmit={(values) => {
         axios.post('/api/advertisement', {
-            ...values,
-            category: +values.category
+          ...values,
+          category: +values.category
         })
             .then( (response)=> {
                 console.log(response);
