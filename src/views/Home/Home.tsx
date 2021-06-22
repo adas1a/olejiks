@@ -6,16 +6,16 @@ import {Button} from "react-bootstrap";
 
 const Home: FC = () => {
   const [advertisements, setAdvertisements] = useState<Advertisement[]>();
-  //note
-  const fetchAd = async():Promise<number> =>{
-    const { status } = await Axios.get<Advertisement[]>('/api/advertisement');
-    return status;
-  };
-
-  const handleClick = async(): Promise<void> => {
-    const status = await fetchAd();
-    alert(status);
-  };
+  // note
+  // const fetchAd = async():Promise<number> =>{
+  //   const { status } = await Axios.get<Advertisement[]>('/api/advertisement');
+  //   return status;
+  // };
+  //
+  // const handleClick = async(): Promise<void> => {
+  //   const status = await fetchAd();
+  //   alert(status);
+  // };
 
   useEffect( () => {
     const fetchData = async (): Promise<void> => {
@@ -37,7 +37,7 @@ const Home: FC = () => {
       {advertisements?.map((item)=> (
         <div key={item.id}>{item.title}</div>
       ))}
-      <Button onClick={handleClick}>Test</Button>
+      <Button >Test</Button>
     </div>
   );
 };

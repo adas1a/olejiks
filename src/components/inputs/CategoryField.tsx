@@ -48,7 +48,6 @@ export const CategoryField: React.FC<CategoryFieldInterface> = ({label, ...props
           {(err) => (
             <Form.Control.Feedback type="invalid">
               {err}
-              {console.log(err)}
             </Form.Control.Feedback>
           )}
         </ErrorMessage>

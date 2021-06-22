@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Formik, Form, useFormik} from 'formik';
 import { Button, Container } from 'react-bootstrap';
@@ -7,10 +7,12 @@ import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
 import { CheckboxField } from '../../components/inputs/CheckboxField';
 import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidation';
+import Axios from 'axios';
+import { Advertisement } from '../../interfaces/Advertisement';
 
 const initialValues = {
   title: '',
-  category: 0,
+  category: 2,
   description:'',
   photos:[0],
   location:0,
@@ -19,24 +21,38 @@ const initialValues = {
   phone:''
   // acceptTerms:false,
 };
+//{async (values) => {
+//         await axios.post('/api/advertisement', {
+//           ...values,
+//           category: +values.category
+//         })
+//             .then( (response)=> {
+//                 console.log(response);
+//             })
+//             .catch((error)=> {
+//                 console.log(error.response.data.message);
+//                 console.log("Jakiś błąd", values);
+//             });
+//     }
+//     }
+
+const axiosPostCall = async (url: string, values: object) => {
+  try {
+    const { data } = await axios.post(url, {
+      ...values
+    });
+    console.log('data: ', data);
+
+  } catch (error) {
+    console.log('error: ', error);
+  }
+};
 
 const AddNewAdvert = () => (
   <Formik
     initialValues={initialValues}
     validationSchema={AddNewFormValidation}
-    onSubmit={(values) => {
-        axios.post('/api/advertisement', {
-          ...values,
-          category: +values.category
-        })
-            .then( (response)=> {
-                console.log(response);
-            })
-            .catch((error)=> {
-                console.log(error.response.data.message);
-                console.log("Jakiś błąd", values);
-            })
-    }}
+    onSubmit={values => axiosPostCall('/api/advertisement', values)}
   >
     {(formik) => (
       <Container>
@@ -44,7 +60,7 @@ const AddNewAdvert = () => (
           <h2>Add an advert</h2>
           <h5>The more details, the better!</h5>
           <TextField label="Advert Title" name="title" type="text" />
-          <CategoryField label='Category' name='category'/>
+          {/*<CategoryField label='Category' name='category'/>*/}
           {/*<TextField label="DO THE PHOTO UPLOAD SYSTEM" name="x"/>*/}
           <DescriptionField label='Description' name='description'/>
 
