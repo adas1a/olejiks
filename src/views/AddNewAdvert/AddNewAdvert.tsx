@@ -7,52 +7,36 @@ import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
 import { CheckboxField } from '../../components/inputs/CheckboxField';
 import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidation';
-import Axios from 'axios';
 import { Advertisement } from '../../interfaces/Advertisement';
+import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
+import PhotoInput from '../../components/inputs/PhotoInput';
 
-const initialValues = {
+const initialValues:AddNewAdvertModel = {
   title: '',
-  category: 2,
+  category: '',
   description:'',
-  photos:[0],
+  photos:[],
   location:0,
-  // sellerName:'',
   email: '',
-  phone:''
-  // acceptTerms:false,
+  phone:'',
+  price:0,
 };
-//{async (values) => {
-//         await axios.post('/api/advertisement', {
-//           ...values,
-//           category: +values.category
-//         })
-//             .then( (response)=> {
-//                 console.log(response);
-//             })
-//             .catch((error)=> {
-//                 console.log(error.response.data.message);
-//                 console.log("Jakiś błąd", values);
-//             });
-//     }
-//     }
 
-const axiosPostCall = async (url: string, values: object) => {
-  try {
-    const { data } = await axios.post(url, {
-      ...values
-    });
-    console.log('data: ', data);
-
-  } catch (error) {
-    console.log('error: ', error);
-  }
+const handleSubmit = async (values:AddNewAdvertModel) => {
+  // try {
+  //   await axios.post('/api/advertisement', values);
+  // } catch (error) {
+  //   console.log('error: ', values);
+  //   console.log('error: ', error.response.data.message);
+  // }
+  console.log(values);
 };
 
 const AddNewAdvert = () => (
   <Formik
     initialValues={initialValues}
     validationSchema={AddNewFormValidation}
-    onSubmit={values => axiosPostCall('/api/advertisement', values)}
+    onSubmit={handleSubmit}
   >
     {(formik) => (
       <Container>
@@ -60,12 +44,12 @@ const AddNewAdvert = () => (
           <h2>Add an advert</h2>
           <h5>The more details, the better!</h5>
           <TextField label="Advert Title" name="title" type="text" />
-          {/*<CategoryField label='Category' name='category'/>*/}
-          {/*<TextField label="DO THE PHOTO UPLOAD SYSTEM" name="x"/>*/}
+          <CategoryField label='Category' name='category'/>
+          <PhotoInput label='Photos' name='photos' />
           <DescriptionField label='Description' name='description'/>
+          <TextField label="Price" name="price" type='number' />
 
           <h2>Contact Details</h2>
-
           <TextField label="Location" name="location" type="number" />
           {/*<TextField label="Seller name" name="sellerName" type="text" />*/}
           <TextField label="E-mail address" name="email" type="email" />
@@ -80,3 +64,6 @@ const AddNewAdvert = () => (
   </Formik>
 );
 export default AddNewAdvert;
+
+
+

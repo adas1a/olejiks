@@ -1,13 +1,10 @@
 export interface AddNewAdvertModel {
-  advertTitle: string;
-  category: number;
+  title:string;
+  category: string;
   description: string;
   location: number;
-  person: string;
-  photos: any;
+  photos: string[];
+  email:string;
   phone: string;
-  accept: boolean;
-  title:string;
-  controlId:string;
-  type:string;
+  price:number;
 }

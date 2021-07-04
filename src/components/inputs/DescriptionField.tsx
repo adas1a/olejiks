@@ -13,13 +13,6 @@ export const DescriptionField: React.FC<DescriptionFieldInterface> = ({ label, .
 
   return (
     <div className="mb-2">
-      {/*<label htmlFor={field.name}>{label}</label>*/}
-      {/*<textarea*/}
-      {/*  className={`form-control shadow-none ${meta.touched && meta.error && 'is-invalid'}`}*/}
-      {/*  {...field} {...props}*/}
-      {/*  autoComplete="off" rows={5} cols={50}*/}
-      {/*/>*/}
-
       <Form.Group controlId={field.name}>
         <Form.Label>{label}</Form.Label>
         <Form.Control  {...field} {...props} rows={5} cols={50} as='textarea'
@@ -33,7 +26,6 @@ export const DescriptionField: React.FC<DescriptionFieldInterface> = ({ label, .
           )}
         </ErrorMessage>
       </Form.Group>
-
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 import { Form } from 'react-bootstrap';
 
@@ -15,12 +15,6 @@ export const TextField: React.FC<TextFieldInterface> = ({ label, ...props }) => 
 
   return (
     <div className="mb-2">
-      {/*<label htmlFor={field.name}>{label}</label>*/}
-      {/*<input*/}
-      {/*  className={`form-control shadow-none ${meta.touched && meta.error && 'is-invalid'}`}*/}
-      {/*  {...field} {...props}*/}
-      {/*  autoComplete="off"*/}
-      {/*/>*/}
       <Form.Group controlId={field.name}>
         <Form.Label>{label}</Form.Label>
         <Form.Control  type="text"  {...field} {...props}
