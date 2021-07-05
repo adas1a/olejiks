@@ -43,7 +43,6 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
   },[file]);
   values.photos = [ids]
 
-
   return (
     <div>
         <Form.Group  controlId={field.name} className="mb-3">
