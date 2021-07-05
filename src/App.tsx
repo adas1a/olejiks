@@ -4,6 +4,8 @@ import Views from './views/Views';
 import Navbar from './components/Navbar/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 function App() {
   return (
     <BrowserRouter>
