@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import Axios from 'axios';
-import { Vinyl } from 'react-bootstrap-icons';
+import {Button} from 'react-bootstrap';
 import { Advertisement } from '../../interfaces/Advertisement';
-import {Button} from "react-bootstrap";
 
 const Home: FC = () => {
   const [advertisements, setAdvertisements] = useState<Advertisement[]>();
@@ -35,7 +34,7 @@ const Home: FC = () => {
       <h1>OLEJIX &reg;</h1>
       Advertisements count: {advertisements?.length}
       {advertisements?.map((item)=> (
-        <div key={item.id}>{item.title}</div>
+        <div key={item.id}>{item.title} price: {item.price}</div>
       ))}
       <Button >Test</Button>
     </div>
