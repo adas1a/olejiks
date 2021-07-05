@@ -34,7 +34,7 @@ const Home: FC = () => {
       <h1>OLEJIX &reg;</h1>
       Advertisements count: {advertisements?.length}
       {advertisements?.map((item)=> (
-        <div key={item.id}>{item.title} price: {item.price}</div>
+        <div key={item.id}>{item.title}</div>
       ))}
       <Button >Test</Button>
     </div>

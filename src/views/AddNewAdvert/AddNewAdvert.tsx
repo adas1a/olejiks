@@ -16,19 +16,20 @@ const initialValues:AddNewAdvertModel = {
   category: '',
   description:'',
   photos:[],
-  location:0,
+  location:'',
   email: '',
   phone:'',
   price:0,
 };
 
+
 const handleSubmit = async (values:AddNewAdvertModel) => {
-  // try {
-  //   await axios.post('/api/advertisement', values);
-  // } catch (error) {
-  //   console.log('error: ', values);
-  //   console.log('error: ', error.response.data.message);
-  // }
+  try {
+    await axios.post('/api/advertisement', values);
+  } catch (error) {
+    console.log('error: ', values);
+    console.log('error: ', error.response.data.message);
+  }
   console.log(values);
 };
 
@@ -50,7 +51,7 @@ const AddNewAdvert = () => (
           <TextField label="Price" name="price" type='number' />
 
           <h2>Contact Details</h2>
-          <TextField label="Location" name="location" type="number" />
+          <TextField label="Location" name="location" type='text' />
           {/*<TextField label="Seller name" name="sellerName" type="text" />*/}
           <TextField label="E-mail address" name="email" type="email" />
           <TextField label="Phone number" name="phone" type="text" />

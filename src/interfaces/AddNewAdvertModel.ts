@@ -2,7 +2,7 @@ export interface AddNewAdvertModel {
   title:string;
   category: string;
   description: string;
-  location: number;
+  location: string;
   photos: string[];
   email:string;
   phone: string;
