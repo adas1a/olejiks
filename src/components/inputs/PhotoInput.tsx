@@ -3,6 +3,7 @@ import { Form } from 'react-bootstrap';
 import { ErrorMessage, useField, useFormikContext } from 'formik';
 import axios from 'axios';
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
+import { FileUploadResponseModel } from '../../interfaces/FileUploadResponseModel';
 
 interface PhotoInputInterface{
   label: string;
@@ -10,45 +11,38 @@ interface PhotoInputInterface{
 }
 const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
   const [field, meta] = useField(props);
-  const {values} = useFormikContext<AddNewAdvertModel>();
+  const {values, setFieldValue} = useFormikContext<AddNewAdvertModel>();
 
-  const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
-  const [ids, setIds] = useState('');
+  const [ids, setIds] = useState<string[]>([]);
 
-  const onChange = (e:any) => {
-    setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
-  };
-
-  useEffect(()=>{
-      const sendFiles = async ():Promise<void>=> {
-        const formData = new FormData();
-        formData.append('file', file);
-        if(file !== ''){
-          try {
-            const res = await axios.post('/api/fileUpload', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data'
-              }
-            });
-            const { id } = res.data;
-            setIds(id);
-          } catch (err) {
-            console.log(err);
+  const onChange = async (e:any) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    if(file !== ''){
+      try {
+        const res = await axios.post<FileUploadResponseModel>('/api/fileUpload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
           }
-        };
-        }
-        sendFiles();
-  },[file]);
-  values.photos = [ids]
+        });
+        const { id } = res.data;
+        //obczaić
+        const idList = [...ids, id];
+        //obczaić
+        setIds(idList);
+        setFieldValue('photos', idList);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   return (
     <div>
         <Form.Group  controlId={field.name} className="mb-3">
           <Form.Label>{label}</Form.Label>
           <Form.Control type="file"  {...props}
-
                         name='photos'
                         onChange={onChange}
           />
