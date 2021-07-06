@@ -1,7 +1,12 @@
 export default
-interface post {
-  userId?: number
+interface PostsInterface {
+  limit?: number
   id?: number
   title?: string
-  body?: string
-}
+  category?: string
+  created?: string
+  maxPrice?: number
+  minPrice?: number
+  location?: string
+  photos?: string
+};
