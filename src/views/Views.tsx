@@ -2,7 +2,8 @@ import React, { FC } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home/Home';
 import AddNewAdvert from './AddNewAdvert/AddNewAdvert';
-import TablePagination from './Table/tablePagination';
+import AdvertisementTable from './AdvertisementTable/AdvertisementTable';
+import Details from './Details/Details';
 
 const Views: FC = () => (
   <Switch>
@@ -10,7 +11,8 @@ const Views: FC = () => (
       <Home />
     </Route>
     <Route path="/new"><AddNewAdvert/></Route>
-    <Route path="/table"><TablePagination /></Route>
+    <Route path="/table"><AdvertisementTable /></Route>
+    <Route path ="/details"><Details /></Route>
   </Switch>
 );
 

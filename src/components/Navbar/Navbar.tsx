@@ -9,5 +9,4 @@ const Navbar:FC = () => (
   </div>
 );
 
-
 export default Navbar;
