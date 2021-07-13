@@ -57,10 +57,10 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
     setFieldValue('location', item);
     setCityMatches([]);
   };
-  const nowyOnBlur = () => {
-    field.onBlur;
-    handleBlur1();
-  }
+  // const nowyOnBlur = () => {
+  //   handleBlur1();
+  //   field.onBlur;
+  // }
   return (
     <div className="mb-2">
       <Form.Group controlId={field.name}>
@@ -68,7 +68,7 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
         <Form.Control  type="text"
                        {...field} autoComplete="off"
                        onInput={(event:any) => handleMatches(event.target.value)}
-                       onBlur={nowyOnBlur}
+                       onBlur={field.value.length < 3 ? field.onBlur : handleBlur1}
                        isInvalid={!!(meta.touched && meta.error)}
         />
         {cityMatches && cityMatches.map((item, index)=>(
