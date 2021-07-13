@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { Container, Pagination, Table } from 'react-bootstrap';
+import { Container, Image, Pagination, Table } from 'react-bootstrap';
 import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
@@ -27,7 +27,6 @@ const AdvertisementTable:React.FC = () => {
         },
         });
         setPosts(data);
-        console.log(data)
       }
       catch (e) {
         console.error(e);
@@ -79,7 +78,7 @@ const AdvertisementTable:React.FC = () => {
           <tr key={postMap.id} onClick={()=>{
             history.push('/details');
           }}>
-            <td><img src={postMap.photos?.slice(0,1).toString()} className='w-25'/></td>
+            <td><Image className = 'photoAdsStyle' src={ postMap.photos?.slice(0,1).toString() } alt = 'Photo is not available' /></td>
             <td>{postMap.title}</td>
             <td>{postMap.created}</td>
             <td>{postMap.location}</td>
