@@ -1,44 +1,65 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { Button, Container, Pagination, Table } from 'react-bootstrap';
-import PostsInterface from '../../interfaces/PostsInterface';
+import { Container, Pagination, Table } from 'react-bootstrap';
+import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 const AdvertisementTable:React.FC = () => {
 
-  const [posts, setPosts] = useState<PostsInterface[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState<AdvertisementsResponse>();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
-  const [disable, setDisable] = useState(false);
-
+  const [limit, setLimit] = useState(5);
+  const [orderBy, setOrderBy] = useState('price');
+  const [orderOption, setOrderOption] = useState('ASC');
+  const history = useHistory();
+  const active = currentPage;
+  
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
       try {
-        setLoading(true);
-        const { data } = await axios.get<PostsInterface[]>('/api/advertisement', {
+        const { data } = await axios.get<AdvertisementsResponse>('/api/advertisement', {
         params:{
           page:currentPage,
-          limit:5,
-          orderBy: 'price',
+          limit,
+          orderBy,
+          orderOption,
         },
         });
         setPosts(data);
-        setLoading(false);
       }
       catch (e) {
         console.error(e);
       }
     };
     fetchPosts();
+  }, [currentPage, limit, orderBy, orderOption]);
+  
+  const handlePaginationPrevious = ()=>{
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
-  }, [currentPage]);
+  const handlePaginationNext = ()=>{
+    if (currentPage > Math.floor((posts?.count || 0) / limit)) {
+      setCurrentPage(currentPage);
+    }
+    else {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
-  const history = useHistory();
+  const handleOrderBy = (order: string) => {
+    setOrderBy(order);
+    if (orderOption === 'ASC') {
+      setOrderOption('DESC');
+    }
+    else {
+      setOrderOption('ASC');
+    }
+  };
 
-  const pageCount = posts? Math.ceil(posts.length/postsPerPage) :0;
-  const active = currentPage;
   return (
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
@@ -47,41 +68,31 @@ const AdvertisementTable:React.FC = () => {
         <thead>
         <tr>
           <th>Photo</th>
-          <th onClick={()=>{history.push('/details');}}>Title</th>
-          <th onClick={()=>{history.push('/details');}}>Created</th>
-          <th onClick={()=>{history.push('/details');}}>Location</th>
+          <th onClick={ () => handleOrderBy('title') }>Title</th>
+          <th onClick={ () => handleOrderBy('created') }>Created</th>
+          <th onClick={ () => handleOrderBy('location') }>Location</th>
         </tr>
         </thead>
         <tbody>
-        {posts?.map((postMap) => (
-          <tr key={postMap.list.id} onClick={()=>{
+        {posts?.list?.map((postMap) => (
+          <tr key={postMap.id} onClick={()=>{
             history.push('/details');
           }}>
-            <td>{postMap.list.photos}</td>
-            <td>{postMap.list.title}</td>
-            <td>{postMap.list.created}</td>
-            <td>{postMap.list.location}</td>
+            <td>{postMap.photos}</td>
+            <td>{postMap.title}</td>
+            <td>{postMap.created}</td>
+            <td>{postMap.location}</td>
           </tr>
         ))}
         </tbody>
       </Table>
 
       <Pagination>
-        <Pagination.Prev onClick={()=>{
-          if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-          }
-        }}/>
+        <Pagination.Prev onClick={handlePaginationPrevious}/>
           <Pagination.Item active={currentPage === active}>
             {currentPage}
           </Pagination.Item>
-        <Pagination.Next onClick={()=>{
-          if (currentPage > pageCount) {
-            setCurrentPage(currentPage);
-          } else {
-            setCurrentPage(currentPage + 1);
-          }
-        }}/>
+        <Pagination.Next onClick={handlePaginationNext}/>
       </Pagination>
     </Container>
   );
