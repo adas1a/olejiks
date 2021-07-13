@@ -65,9 +65,9 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
     }
   };
 
-  console.log(list);
-  console.log(ids);
-  console.log(values)
+  // console.log(list);
+  // console.log(ids);
+  // console.log(values);
 
   return (
     <div>

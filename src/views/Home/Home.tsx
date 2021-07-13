@@ -21,7 +21,7 @@ const Home: FC = () => {
       try {
         const { data } = await Axios.get<Advertisement[]>('/api/advertisement');
         setAdvertisements(data);
-        console.log(data)
+        console.log(data);
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
@@ -32,7 +32,7 @@ const Home: FC = () => {
 
   return (
     <div>
-      <h1>OLEJIX &reg;</h1>
+      {/*<h1>OLEJIX &reg;</h1>*/}
       {/*Advertisements count: {advertisements?.length}*/}
       {/*{advertisements?.map((item)=> (*/}
       {/*  <div key={item.id}>{item.title}</div>*/}

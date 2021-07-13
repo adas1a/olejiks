@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import {Formik, Form, useFormik} from 'formik';
 import { Button, Container } from 'react-bootstrap';
 import  { TextField }  from '../../components/inputs/TextField';
 import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
-import { CheckboxField } from '../../components/inputs/CheckboxField';
 import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidation';
-import { Advertisement } from '../../interfaces/Advertisement';
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
 import PhotoInput from '../../components/inputs/PhotoInput';
+import { LocationInput } from '../../components/inputs/LocationInput';
 
 const initialValues:AddNewAdvertModel = {
   title: '',
-  category: '',
+  category: 'siema',
   description:'',
   photos:[],
   location:'',
@@ -21,7 +20,6 @@ const initialValues:AddNewAdvertModel = {
   phone:'',
   price:0,
 };
-
 
 const handleSubmit = async (values:AddNewAdvertModel) => {
   try {
@@ -51,7 +49,7 @@ const AddNewAdvert = () => (
           <TextField label="Price" name="price" type='number' />
 
           <h2>Contact Details</h2>
-          <TextField label="Location" name="location" type='text' />
+          <LocationInput label="Location" name="location" type='text' />
           {/*<TextField label="Seller name" name="sellerName" type="text" />*/}
           <TextField label="E-mail address" name="email" type="email" />
           <TextField label="Phone number" name="phone" type="text" />
@@ -65,6 +63,3 @@ const AddNewAdvert = () => (
   </Formik>
 );
 export default AddNewAdvert;
-
-
-

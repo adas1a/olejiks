@@ -27,6 +27,7 @@ const AdvertisementTable:React.FC = () => {
         },
         });
         setPosts(data);
+        console.log(data)
       }
       catch (e) {
         console.error(e);
@@ -78,7 +79,7 @@ const AdvertisementTable:React.FC = () => {
           <tr key={postMap.id} onClick={()=>{
             history.push('/details');
           }}>
-            <td>{postMap.photos}</td>
+            <td><img src={postMap.photos?.slice(0,1).toString()} className='w-25'/></td>
             <td>{postMap.title}</td>
             <td>{postMap.created}</td>
             <td>{postMap.location}</td>
