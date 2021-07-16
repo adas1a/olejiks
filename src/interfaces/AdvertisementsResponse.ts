@@ -1,6 +1,6 @@
 export interface AdvertisementsResponseItem {
         limit: number
-        id?: number
+        id?: string
         title?: string
         category?: string
         created?: string
