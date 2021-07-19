@@ -12,7 +12,7 @@ const Views: FC = () => (
     </Route>
     <Route path="/new"><AddNewAdvert/></Route>
     <Route path="/table"><AdvertisementTable /></Route>
-    <Route path ="/details"><Details /></Route>
+    <Route path ="/details/:advertId"><Details /></Route>
   </Switch>
 );
 
