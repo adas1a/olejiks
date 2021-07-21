@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
-import toArray from 'yup/es/util/toArray';
+import PhotoGallery from '../../components/PhotoGallery/PhotoGallery';
+import { Carousel, Col, Container, Row } from 'react-bootstrap';
 
 interface DetailsInterface {
   id: string
@@ -26,7 +27,7 @@ const Details:React.FC = () => {
       const { data } = await Axios.get<DetailsInterface>(`/api/advertisement/${advertId}`);
       setDetails(data);
     }
-    catch (e) {
+    catch(e) {
       console.error(e);
     }
   };
@@ -35,12 +36,24 @@ const Details:React.FC = () => {
   console.log(details);
   return(
     <div>
-      <p>{details?.title}</p>
-      <p>{details?.price}</p>
-      <p>{details?.category}</p>
-      <p>{details?.email}</p>
-      <p>{details?.location}</p>
-      <p>{details?.phone}</p>
+      <Container>
+      <Row>
+        <Col>
+          <PhotoGallery src={details?.photos}/>
+        </Col>
+        <Col md="auto">
+          <p>Created by: {details?.email}</p>
+          <p>Phone number: {details?.phone}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <p>{details?.title}</p>
+          <p>{details?.price} PLN</p>
+          <p>{details?.description}</p>
+        </Col>
+      </Row>
+    </Container>
     </div>
   );
 };

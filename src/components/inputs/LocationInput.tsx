@@ -40,25 +40,7 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
     };
     fetchData();
   },[]);
-
-  const handleMatches = (input:string) => {
-    if(!input){
-      setCityMatches([]);
-    }
-    const matches = cities.filter((city)=>{
-      const regex = new RegExp(`${input}`, 'gi');
-        return city?.name.match(regex);
-      });
-    setCityMatches(matches);
-  };
-  const handleCityBlur = () => {
-    setCityMatches([]);
-  };
-  const handleClick = (item:string) => {
-    setFieldValue('location', item);
-    setCityMatches([]);
-  };
-
+  console.log(field.value)
   return (
     <div className="mb-2">
       <Form.Group controlId={field.name} >
@@ -66,7 +48,7 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
         <Form.Control as="select" {...field} >
           <option value='' >Select</option>
           {cities?.map((city)=>(
-            <option key={city.cityId} value={city.cityId}>{city.name}</option>
+            <option key={city.cityId} value={city.name}>{city.name}</option>
           ))}
         </Form.Control>
         <ErrorMessage name={field.name}>
