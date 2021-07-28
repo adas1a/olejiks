@@ -40,7 +40,6 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
     };
     fetchData();
   },[]);
-  console.log(field.value)
   return (
     <div className="mb-2">
       <Form.Group controlId={field.name} >

@@ -1,23 +1,20 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC } from 'react';
 import { Col, Image } from 'react-bootstrap';
+import { BsFillTrashFill } from 'react-icons/all';
 import image from '../../images/image.png';
-
-import '../../styles/new-styles.css';
 
 interface Photos {
   onClick?:(ev:any) => void;
   url?:string;
 }
-const PhotoList:FC<Photos> = ({onClick, url }) => {
-
-  return (
+const PhotoList:FC<Photos> = ({ onClick, url  }) => (
     <>
-      <Col xs={6} md={3} onClick={onClick}>
-        <Image src={ url !== undefined ? url : image} className='w-100 onHover'/>
+      <Col xs={6} md={3} onClick={onClick} className=''>
+        {url === undefined ? null : <BsFillTrashFill className='dupa2' />}
+        <Image src={ url !== undefined ? url : image} className='onHover dupa'/>
       </Col>
     </>
 
   );
-};
 
 export default PhotoList;
