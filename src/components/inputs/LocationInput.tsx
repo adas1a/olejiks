@@ -12,6 +12,7 @@ interface LocationInputInterface {
 }
 
 interface CityModel{
+  cityId:string;
   name:string;
   voivodeship:string;
   coordinates:CoordinatesModel[];
@@ -39,44 +40,16 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
     };
     fetchData();
   },[]);
-
-  const handleMatches = (input:string) => {
-    if(!input){
-      setCityMatches([]);
-    }
-    const matches = cities.filter((city)=>{
-      const regex = new RegExp(`${input}`, 'gi');
-        return city?.name.match(regex);
-      });
-    setCityMatches(matches);
-  };
-  const handleBlur1 = () => {
-    setCityMatches([]);
-  };
-  const handleClick = (item:string) => {
-    setFieldValue('location', item);
-    setCityMatches([]);
-  };
-  // const nowyOnBlur = () => {
-  //   handleBlur1();
-  //   field.onBlur;
-  // }
   return (
     <div className="mb-2">
-      <Form.Group controlId={field.name}>
+      <Form.Group controlId={field.name} >
         <Form.Label>{label}</Form.Label>
-        <Form.Control  type="text"
-                       {...field} autoComplete="off"
-                       onInput={(event:any) => handleMatches(event.target.value)}
-                       onBlur={field.value.length < 3 ? field.onBlur : handleBlur1}
-                       isInvalid={!!(meta.touched && meta.error)}
-        />
-        {cityMatches && cityMatches.map((item, index)=>(
-          <Card onClick={()=>{handleClick(item.name);}}>
-              {item.name}
-          </Card>
-        ))}
-
+        <Form.Control as="select" {...field} >
+          <option value='' >Select</option>
+          {cities?.map((city)=>(
+            <option key={city.cityId} value={city.name}>{city.name}</option>
+          ))}
+        </Form.Control>
         <ErrorMessage name={field.name}>
           {(err) => (
             <Form.Control.Feedback type="invalid">

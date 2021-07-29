@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 const phoneRegExp = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/;
-
 export const AddNewFormValidation = Yup.object({
   title: Yup.string()
     .min(16, 'The title cannot be shorter than 16 characters.')
@@ -12,6 +11,7 @@ export const AddNewFormValidation = Yup.object({
     .min(80, 'At least 80 characters. Remember about detailed information or damage (if any)')
     .max(1000, 'Description must be less than 1000 characters')
     .required('At least 80 characters. Remember about detailed information or damage (if any)'),
+  price:Yup.number().required('Price is required'),
   location: Yup.string()
     .min(3, 'At least 3 characters long')
     .required('Location is required'),

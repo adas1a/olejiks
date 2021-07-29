@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Container, Image, Pagination, Table } from 'react-bootstrap';
 import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -12,7 +12,6 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 // // localStorage.removeItem('token');
 
 const AdvertisementTable:React.FC = () => {
-
   const [posts, setPosts] = useState<AdvertisementsResponse>();
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(5);
@@ -20,7 +19,8 @@ const AdvertisementTable:React.FC = () => {
   const [orderOption, setOrderOption] = useState('ASC');
   const history = useHistory();
   const active = currentPage;
-  
+
+
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
       try {
