@@ -20,7 +20,6 @@ const AdvertisementTable:React.FC = () => {
   const history = useHistory();
   const active = currentPage;
 
-
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
       try {

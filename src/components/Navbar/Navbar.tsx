@@ -6,6 +6,8 @@ const Navbar:FC = () => (
     <NavButton link='/' label='home' />
     <NavButton link='/new' label='Add new advert' />
     <NavButton link='/table' label='table' />
+    <NavButton label='register' link='register'/>
+    <NavButton label='login' link='login'/>
   </div>
 );
 
