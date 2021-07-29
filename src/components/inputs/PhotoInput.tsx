@@ -5,7 +5,6 @@ import axios from 'axios';
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
 import { FileUploadResponseModel } from '../../interfaces/FileUploadResponseModel';
 import PhotoList from '../PhotoList/PhotoList';
-import { BsFillTrashFill } from 'react-icons/all';
 
 interface PhotoInputInterface{
   label: string;
