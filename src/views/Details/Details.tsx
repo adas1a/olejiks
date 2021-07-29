@@ -36,12 +36,6 @@ const Details:React.FC = () => {
   };
   fetchDetails();
 }, [advertId]);
-  console.log(details);
-
-  const handleShowNumber = () => {
-
-  }
-
   return(
     <div>
       <Container>
@@ -59,7 +53,7 @@ const Details:React.FC = () => {
               <p>{details?.email}</p>
             </Col>
           </Row>
-          <Button onClick={handleShowNumber} id='phoneNumberButton'>{buttonText}</Button>
+          <Button id='phoneNumberButton'>{buttonText}</Button>
           <p>{details?.location}</p>
         </Col>
       </Row>
