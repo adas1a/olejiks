@@ -8,6 +8,7 @@ export interface AdvertisementsResponseItem {
         minPrice?: number
         location?: string
         photos?: string[]
+        price?: number,
 }
 
 export interface AdvertisementsResponse {
