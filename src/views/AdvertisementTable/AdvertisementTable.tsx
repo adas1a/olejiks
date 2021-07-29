@@ -6,7 +6,7 @@ import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
-// // localStorage.setItem('token', token);
+// localStorage.setItem('token', token);
 //
 // axios.defaults.headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
 // // localStorage.removeItem('token');
@@ -15,7 +15,7 @@ const AdvertisementTable:React.FC = () => {
   const [posts, setPosts] = useState<AdvertisementsResponse>();
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [orderBy, setOrderBy] = useState('price');
+  const [orderBy, setOrderBy] = useState('title');
   const [orderOption, setOrderOption] = useState('ASC');
   const history = useHistory();
   const active = currentPage;
@@ -89,6 +89,7 @@ const AdvertisementTable:React.FC = () => {
           <th onClick={ () => handleOrderBy('title') }>Title { handleOrderIcon('title') }</th>
           <th onClick={ () => handleOrderBy('created') }>Created { handleOrderIcon('created') }</th>
           <th onClick={ () => handleOrderBy('location') }>Location { handleOrderIcon('location') }</th>
+          <th onClick={ () => handleOrderBy('price') }>Price { handleOrderIcon('price') }</th>
         </tr>
         </thead>
         <tbody>
@@ -100,6 +101,7 @@ const AdvertisementTable:React.FC = () => {
             <td>{postMap.title}</td>
             <td>{postMap.created}</td>
             <td>{postMap.location}</td>
+            <td>{postMap.price}</td>
           </tr>
         ))}
         </tbody>
