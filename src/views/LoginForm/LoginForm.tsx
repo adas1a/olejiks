@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
-import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
+import { Button, Container, Form, Row } from 'react-bootstrap';
 import { Formik } from 'formik';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
 import { TextField } from '../../components/inputs/TextField';
 
 interface LoginModel {
@@ -41,10 +41,14 @@ const LoginForm = () => {
           <Form className='mt-3'>
             <TextField label='Email' name='email' type='email' placeholder='Enter email address'/>
             <TextField label='Password' name='password' type='password' placeholder='Enter your password'/>
-            <Form.Text className='mb-3' onClick={() => history.push('/register')}>Not registered? Create an account</Form.Text>
-            <Button variant="primary" onClick={() => handleLogin(formik.values)} type="submit">
-              Submit
-            </Button>
+            <Row>
+              <Button variant='link' className='mb-3' onClick={() => history.replace('/register')}>Not registered? Create an account</Button>
+            </Row>
+            <Row>
+              <Button variant="primary" onClick={() => handleLogin(formik.values)} type="submit">
+                Submit
+              </Button>
+            </Row>
           </Form>
         </Container>
       )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { Container, Image, Pagination, Table } from 'react-bootstrap';
+import { Container, Dropdown, DropdownButton, Image, Pagination, Table } from 'react-bootstrap';
 import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
@@ -50,7 +50,7 @@ const AdvertisementTable:React.FC = () => {
   };
 
   const handlePaginationNext = ()=>{
-    if (currentPage > Math.floor((posts?.count || 0) / limit)) {
+    if (currentPage >= Math.floor((posts?.count || 0) / limit)) {
       setCurrentPage(currentPage);
     }
     else {
@@ -76,12 +76,34 @@ const AdvertisementTable:React.FC = () => {
         return <i className="bi bi-sort-down" />;
     }
   };
-  
+
+  const [activate, setActivate] = useState();
+  const pageLimit = Math.floor((posts?.count || 0) / limit);
+
+  const items = [];
+    for (let number = 1; number <= Math.floor((posts?.count || 0) / limit); number++) {
+      items.push(
+        <Pagination.Item onClick={() => setCurrentPage(number)} key={number} active={number === active}>
+          {number}
+        </Pagination.Item>,
+      );
+    }
+
+  const paginationBasic = (
+      <Pagination>{items}</Pagination>
+  );
+
   return (
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
 
-      <Table bordered hover striped>
+      <h2>Filter options: </h2>
+      <DropdownButton className='mb-3' id="dropdown-filters" title="Choose option">
+        <Dropdown.Item>Price</Dropdown.Item>
+        <Dropdown.Item>Category</Dropdown.Item>
+      </DropdownButton>
+
+      <Table bordered hover striped responsive>
         <thead>
         <tr>
           <th>Photo</th>
@@ -105,13 +127,12 @@ const AdvertisementTable:React.FC = () => {
         ))}
         </tbody>
       </Table>
-
       <Pagination>
+        <Pagination.First onClick={() => setCurrentPage(1)}/>
         <Pagination.Prev onClick={handlePaginationPrevious}/>
-          <Pagination.Item active={currentPage === active}>
-            {currentPage}
-          </Pagination.Item>
+          {paginationBasic}
         <Pagination.Next onClick={handlePaginationNext}/>
+        <Pagination.Last onClick={() => setCurrentPage(pageLimit)}/>
       </Pagination>
     </Container>
   );

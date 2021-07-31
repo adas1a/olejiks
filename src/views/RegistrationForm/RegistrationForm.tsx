@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { Formik } from 'formik';
 import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
@@ -50,10 +50,14 @@ const RegistrationForm = () => {
           <TextField label='Email' name='email' type='email' placeholder='Enter email address'/>
           <TextField label='Password' name='password' type='password' placeholder='Enter your password'/>
           <TextField label='Confirm Password' name='confirmPassword' type='password' placeholder='Confirm password'/>
-          <Form.Text className='mb-3' onClick={() => history.push('/login')}>Already registered? Login to your account.</Form.Text>
-          <Button variant="primary" onClick={() => handleRegister(formik.values)} type="submit">
-            Submit
-          </Button>
+          <Row>
+            <Button variant='link' className='mb-3' onClick={() => history.replace('/login')}>Already registered? Login to your account.</Button>
+          </Row>
+          <Row>
+            <Button variant="primary" onClick={() => handleRegister(formik.values)} type="submit">
+              Submit
+            </Button>
+          </Row>
         </Form>
       </Container>
     )}
