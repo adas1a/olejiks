@@ -5,6 +5,9 @@ import { Col, Container, Row, Image, Button } from 'react-bootstrap';
 import PhotoGallery from '../../components/PhotoGallery/PhotoGallery';
 import '../../styles/new-styles.css';
 import profilePic from '../../images/profilePicture.jpg';
+import UserInfoSection from '../../components/UserInfoSection/UserInfoSection';
+import LocationSection from '../../components/LocationSection/LocationSection';
+import ProductInfoSection from '../../components/ProductInfoSection/ProductInfoSection';
 
 interface DetailsInterface {
   id: string
@@ -23,7 +26,6 @@ const Details:React.FC = () => {
   const { advertId }:{advertId:string} = useParams();
 
   const [details, setDetails] = useState<DetailsInterface>();
-  const [buttonText, setButtonText] = useState<string | null>('Call Seller');
   useEffect(()=>{
   const fetchDetails = async (): Promise<void> => {
     try {
@@ -37,35 +39,23 @@ const Details:React.FC = () => {
   fetchDetails();
 }, [advertId]);
   return(
-    <div>
-      <Container>
+      <Container className='mt-5'>
       <Row>
-        <Col className='detailBg'>
+        <Col className='detailBg' md={8}>
           <PhotoGallery src={details?.photos}/>
         </Col>
-        <Col className='detailBg' md={4}>
-          <h5>User</h5>
-          <Row>
-            <Col>
-              <Image src={profilePic} roundedCircle width={60} />
-            </Col>
-            <Col>
-              <p>{details?.email}</p>
-            </Col>
-          </Row>
-          <Button id='phoneNumberButton'>{buttonText}</Button>
-          <p>{details?.location}</p>
+        <Col className='detailBg'>
+          <UserInfoSection userName={details?.email} userPhone={details?.phone}/>
+          <LocationSection key={null}/>
         </Col>
+
       </Row>
       <Row>
-        <Col className='detailBg'>
-          <p>{details?.title}</p>
-          <p>{details?.price} PLN</p>
-          <p>{details?.description}</p>
+        <Col className='detailBg' md={8 }>
+          <ProductInfoSection created={details?.created} title={details?.title} price={details?.price} description={details?.description}/>
         </Col>
       </Row>
     </Container>
-    </div>
   );
 };
 

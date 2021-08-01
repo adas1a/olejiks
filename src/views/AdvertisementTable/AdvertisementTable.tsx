@@ -120,7 +120,7 @@ const AdvertisementTable:React.FC = () => {
           }}>
             <td><Image className = 'photoAdsStyle' src={ postMap.photos?.slice(0,1).toString() } alt = 'Photo is not available' /></td>
             <td>{postMap.title}</td>
-            <td>{postMap.created}</td>
+            <td>{postMap.created?.split('T')[0]} at {postMap.created?.split('T')[1].split('.')[0]}</td>
             <td>{postMap.location}</td>
             <td>{postMap.price}</td>
           </tr>

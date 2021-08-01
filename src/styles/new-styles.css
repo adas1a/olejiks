@@ -26,8 +26,17 @@
     cursor: pointer;
 }
 .detailBg{
-    background-color: #e6e6f0;
+    background-color: #f5f5f8;
     margin: 5px;
+}
+.heart{
+    font-size: 33px;
+    cursor: pointer;
+}
+.heart-clicked{
+    font-size: 33px;
+    cursor: pointer;
+    color:red;
 }
 
 
