@@ -6,7 +6,7 @@ interface PhotoGalleryInterface{
 }
 const PhotoGallery:React.FC<PhotoGalleryInterface> = ({src}) => {
   return (
-    <Carousel interval={null}>
+    <Carousel interval={null} className='mt-4'>
       {src?.map((photo)=>(
         <Carousel.Item key={photo}>
           <img

@@ -4,14 +4,14 @@
 .photoAdsStyle {
     max-width: 100px;
 }
-.dupa{
+.PhotoListStyles{
     width: 100%;
     height: 100%;
     margin-bottom: 5px;
     object-fit: contain;
     cursor: pointer;
 }
-.dupa2{
+.FrontingDeleteButton{
     position: absolute;
     opacity: 0;
     width: 87%;
@@ -21,7 +21,7 @@
     top:30%;
     color:#dc3545;
 }
-.dupa2:hover{
+.FrontingDeleteButton:hover{
     opacity: 1;
     cursor: pointer;
 }
@@ -38,5 +38,6 @@
     cursor: pointer;
     color:red;
 }
+
 
 

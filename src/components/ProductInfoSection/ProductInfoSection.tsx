@@ -12,24 +12,24 @@ interface ProductInfoInterface{
 const ProductInfoSection:React.FC<ProductInfoInterface> = ({ created, title, price, description }) => {
 
   const [like, setLike] = useState(false);
+
   const handleLikeButton = () => {
-    setLike(true)
+      setLike(true)
   };
 
   return (
     <div className='mt-3'>
       <Row>
         <Col >
-          <p>Added: {created?.split('T')[0]} at {created?.split('T')[1].split('.')[0]}</p>
+          <p className='mt-1'>Added: {created?.split('T')[0]} at {created?.split('T')[1].split('.')[0]}</p>
         </Col>
         {like === false ?
           <AiOutlineHeart onClick={handleLikeButton} className='heart mr-3'/> :
           <AiFillHeart className='heart-clicked mr-3'/>
         }
-
       </Row>
       <h2 className='font-weight-normal'>{title}</h2>
-      <h3 className='font-weight-bold mt-4'>{price}</h3>
+      <h3 className='font-weight-bold mt-4'>{price} PLN</h3>
       <h4 className='font-weight-bold mt-4'>Description</h4>
       <p>{description}</p>
     </div>

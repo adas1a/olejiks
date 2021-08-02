@@ -11,10 +11,15 @@ const center = {
   lng: 20.628569,
 };
 
-const LocationSection = () => {
+interface LocationSectionInterface{
+  city:string|undefined
+}
+
+const LocationSection:React.FC<LocationSectionInterface> = ({ city }) => {
   return (
-    <div className='mt-3'>
+    <div className='mt-3 r'>
       <h4>Location</h4>
+      <p className='h-6'>{city}</p>
       <LoadScript
         googleMapsApiKey="AIzaSyBblQlMGe6mX3VputCFpVe1DAmO7NtUfHU"
       >

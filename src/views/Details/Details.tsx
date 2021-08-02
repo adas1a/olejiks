@@ -46,12 +46,11 @@ const Details:React.FC = () => {
         </Col>
         <Col className='detailBg'>
           <UserInfoSection userName={details?.email} userPhone={details?.phone}/>
-          <LocationSection key={null}/>
+          <LocationSection key={null} city={details?.location}/>
         </Col>
-
       </Row>
       <Row>
-        <Col className='detailBg' md={8 }>
+        <Col className='detailBg' md={8}>
           <ProductInfoSection created={details?.created} title={details?.title} price={details?.price} description={details?.description}/>
         </Col>
       </Row>

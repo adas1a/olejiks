@@ -10,8 +10,8 @@ interface Photos {
 const PhotoList:FC<Photos> = ({ onClick, url  }) => (
     <>
       <Col xs={6} md={3} onClick={onClick} className=''>
-        {url === undefined ? null : <BsFillTrashFill className='dupa2' />}
-        <Image src={ url !== undefined ? url : image} className='onHover dupa'/>
+        {url === undefined ? null : <BsFillTrashFill className='FrontingDeleteButton' />}
+        <Image src={ url !== undefined ? url : image} className='PhotoListStyles'/>
       </Col>
     </>
 
