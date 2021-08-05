@@ -13,7 +13,7 @@
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
     <inspection_tool class="RequiredAttributes" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="myAdditionalRequiredHtmlAttributes" value="link" />
+      <option name="myAdditionalRequiredHtmlAttributes" value="link,setOrderBy" />
     </inspection_tool>
   </profile>
 </component>

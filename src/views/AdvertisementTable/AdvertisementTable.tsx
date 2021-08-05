@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { Container, Dropdown, DropdownButton, Image, Pagination, Table } from 'react-bootstrap';
+import { Button, Container, Image, Pagination, Table, Row, Col } from 'react-bootstrap';
+import { Form } from 'formik';
 import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import { TextField } from '../../components/inputs/TextField';
+import FiltersForm from './FiltersForm/FiltersForm';
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
 // localStorage.setItem('token', token);
@@ -15,8 +17,10 @@ const AdvertisementTable:React.FC = () => {
   const [posts, setPosts] = useState<AdvertisementsResponse>();
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [orderBy, setOrderBy] = useState('title');
-  const [orderOption, setOrderOption] = useState('ASC');
+  const [orderBy, setOrderBy] = useState('created');
+  const [disablePrev, setDisablePrev] = useState(false);
+  const [disableNext, setDisableNext] = useState(false);
+  const [orderOption, setOrderOption] = useState('DESC');
   const history = useHistory();
   const active = currentPage;
 
@@ -46,15 +50,24 @@ const AdvertisementTable:React.FC = () => {
   const handlePaginationPrevious = ()=>{
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      setDisablePrev(false);
+      setDisableNext(false);
+    }
+    else {
+      setDisablePrev(true);
+      setDisableNext(false);
     }
   };
 
   const handlePaginationNext = ()=>{
     if (currentPage >= Math.floor((posts?.count || 0) / limit)) {
-      setCurrentPage(currentPage);
+      setDisableNext(true);
+      setDisablePrev(false);
     }
     else {
       setCurrentPage(currentPage + 1);
+      setDisableNext(false);
+      setDisablePrev(false);
     }
   };
 
@@ -77,11 +90,10 @@ const AdvertisementTable:React.FC = () => {
     }
   };
 
-  const [activate, setActivate] = useState();
   const pageLimit = Math.floor((posts?.count || 0) / limit);
 
   const items = [];
-    for (let number = 1; number <= Math.floor((posts?.count || 0) / limit); number++) {
+    for (let number = 1; number <= pageLimit; number++) {
       items.push(
         <Pagination.Item onClick={() => setCurrentPage(number)} key={number} active={number === active}>
           {number}
@@ -96,13 +108,8 @@ const AdvertisementTable:React.FC = () => {
   return (
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
-
       <h2>Filter options: </h2>
-      <DropdownButton className='mb-3' id="dropdown-filters" title="Choose option">
-        <Dropdown.Item>Price</Dropdown.Item>
-        <Dropdown.Item>Category</Dropdown.Item>
-      </DropdownButton>
-
+      <FiltersForm />
       <Table bordered hover striped responsive>
         <thead>
         <tr>
@@ -129,9 +136,9 @@ const AdvertisementTable:React.FC = () => {
       </Table>
       <Pagination>
         <Pagination.First onClick={() => setCurrentPage(1)}/>
-        <Pagination.Prev onClick={handlePaginationPrevious}/>
+        <Pagination.Prev disabled={disablePrev} onClick={handlePaginationPrevious}/>
           {paginationBasic}
-        <Pagination.Next onClick={handlePaginationNext}/>
+        <Pagination.Next disabled={disableNext} onClick={handlePaginationNext}/>
         <Pagination.Last onClick={() => setCurrentPage(pageLimit)}/>
       </Pagination>
     </Container>
