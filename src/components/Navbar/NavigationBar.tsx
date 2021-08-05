@@ -1,13 +1,7 @@
 import React, { FC } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Button, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Nav, Navbar} from 'react-bootstrap';
 
-interface NavButtonProps {
-  label: string;
-  link: string;
-}
-
-const NavButton: FC<NavButtonProps>  = (props) => {
+const NavigationBar: FC  = () => {
   return (
     <>
       {/*<LinkContainer to={props.link} exact>*/}
@@ -23,9 +17,9 @@ const NavButton: FC<NavButtonProps>  = (props) => {
             <Nav.Link href="/table">Adverts</Nav.Link>
             <Nav.Link href="/new">Add new advert</Nav.Link>
           </Nav>
-          <Nav>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
+          <Nav >
+            <Nav.Link href="/login" className='text-primary'>Login</Nav.Link>
+            <Nav.Link href="/register" className='text-danger'>Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -33,4 +27,4 @@ const NavButton: FC<NavButtonProps>  = (props) => {
   );
 };
 
-export default NavButton;
+export default NavigationBar;

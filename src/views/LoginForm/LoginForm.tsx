@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Container, Form, Row } from 'react-bootstrap';
-import { Formik } from 'formik';
+import { Button, Container, Row } from 'react-bootstrap';
+import { Formik, Form } from 'formik';
 import axios from 'axios';
 import { Redirect, useHistory } from 'react-router-dom';
 import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
@@ -17,8 +17,6 @@ const initialValues: LoginModel = {
 };
 
 const handleLogin = async (values:LoginModel) => {
-  // @ts-ignore
-  event.preventDefault();
   try {
     const res = await axios.post('/api/auth/login', values);
     console.log(res);
@@ -33,7 +31,6 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={AddNewFormValidation}
       onSubmit={handleLogin}>
 
       {(formik) => (
@@ -45,7 +42,7 @@ const LoginForm = () => {
               <Button variant='link' className='mb-3' onClick={() => history.replace('/register')}>Not registered? Create an account</Button>
             </Row>
             <Row>
-              <Button variant="primary" onClick={() => handleLogin(formik.values)} type="submit">
+              <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Row>

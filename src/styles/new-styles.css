@@ -17,7 +17,6 @@
     width: 87%;
     height: 40%;
     font-size: 5rem;
-    z-index: 1;
     top:30%;
     color:#dc3545;
 }
@@ -37,6 +36,23 @@
     font-size: 33px;
     cursor: pointer;
     color:red;
+}
+.SearchBar{
+    font-size: 22px;
+    height: 60px;
+}
+.SearchBar > input[type='text'], button[type='submit']{
+    font-size: 22px;
+    height: 60px;
+}
+.xd{
+    width: 100vw;
+}
+.xdd{
+    height: 150px;
+}
+.xd2{
+    border: 4px solid black;
 }
 
 

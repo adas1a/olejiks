@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { Col, Container, Row, Image, Button } from 'react-bootstrap';
-import PhotoGallery from '../../components/PhotoGallery/PhotoGallery';
+import PhotoGallery from './PhotoGallery/PhotoGallery';
 import '../../styles/new-styles.css';
 import profilePic from '../../images/profilePicture.jpg';
-import UserInfoSection from '../../components/UserInfoSection/UserInfoSection';
-import LocationSection from '../../components/LocationSection/LocationSection';
+import UserInfoSection from './UserInfoSection/UserInfoSection';
+import LocationSection from './LocationSection/LocationSection';
 import ProductInfoSection from '../../components/ProductInfoSection/ProductInfoSection';
 
 interface DetailsInterface {

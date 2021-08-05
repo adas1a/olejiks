@@ -50,12 +50,9 @@ const AddNewAdvert = () => (
 
           <h2>Contact Details</h2>
           <LocationInput label="Location" name="location" type='text' />
-          {/*<TextField label="Seller name" name="sellerName" type="text" />*/}
           <TextField label="E-mail address" name="email" type="email" />
           <TextField label="Phone number" name="phone" type="text" />
 
-          {/*<CheckboxField label="I consent to the use by the OLEJIKS Group sp. Z oo of electronic communication means and telecommunications terminal devices for the purpose of sending me commercial information and conducting marketing (e.g. newsletter, SMS messages) by the OLEJIKS Group sp. Z oo, related entities and business partners."*/}
-          {/*               type='checkbox'  name='acceptTerms'/>*/}
           <Button className="mt-3" variant="primary" type="submit" >Submit</Button>
         </Form>
       </Container>

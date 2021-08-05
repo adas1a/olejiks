@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/all';
+import moment from 'moment';
 
 interface ProductInfoInterface{
   title: string|undefined
@@ -14,14 +15,14 @@ const ProductInfoSection:React.FC<ProductInfoInterface> = ({ created, title, pri
   const [like, setLike] = useState(false);
 
   const handleLikeButton = () => {
-      setLike(true)
+      setLike(true);
   };
 
   return (
     <div className='mt-3'>
       <Row>
-        <Col >
-          <p className='mt-1'>Added: {created?.split('T')[0]} at {created?.split('T')[1].split('.')[0]}</p>
+        <Col>
+          <p className='mt-1'>Created: {moment(created).format('DD.MM.YYYY HH:mm')}</p>
         </Col>
         {like === false ?
           <AiOutlineHeart onClick={handleLikeButton} className='heart mr-3'/> :
