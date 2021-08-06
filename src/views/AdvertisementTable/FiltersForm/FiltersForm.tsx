@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { Form, Formik, useField, useFormik, useFormikContext } from 'formik';
+import { Form, Formik } from 'formik';
 import axios from 'axios';
 import { TextField } from '../../../components/inputs/TextField';
-import { AddNewFormValidation } from '../../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
 
 interface FiltersModelItem {
-  minPrice: undefined,
-  maxPrice: undefined,
+  minPrice: number,
+  maxPrice: number,
 }
 
 interface FiltersModel {
@@ -16,45 +15,47 @@ interface FiltersModel {
 }
 
 const initialValues: FiltersModelItem = {
-  minPrice: undefined,
-  maxPrice: undefined,
+  minPrice: 0,
+  maxPrice: 0,
 };
 
 const FiltersForm:React.FC = () => {
   const [filters, setFilters] = useState<FiltersModelItem>();
-  const [maxPrice, setMaxPrice] = useState();
-  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
 
-  useEffect(()=> {
-    const fetchFilters = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get<FiltersModelItem>('/api/advertisement', {
-          params:{
-            maxPrice,
-            minPrice,
-          },
-        });
-        setFilters(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchFilters();
-  }, [minPrice, maxPrice]);
-
-  const handleUserInput = (min: undefined, max: undefined) => {
-    setMinPrice(min);
-    setMaxPrice(max);
+  const fetchFilters = async (values:FiltersModelItem) => {
+    try {
+      const { data } = await axios.get<FiltersModelItem>('/api/advertisement', {
+                params:{
+                  maxPrice,
+                  minPrice,
+                },
+              });
+              console.log(data);
+              setFilters(data);
+    } catch (error) {
+      console.log('error: ', values);
+      console.log('error: ', error.response.data.message);
+    }
+    console.log(values);
   };
 
+  const handleUserInput =  (min: number, max: number) => {
+     setMinPrice(min);
+     setMaxPrice(max);
+    console.log(minPrice, maxPrice);
+  };
+  console.log(filters);
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={() => console.log(filters)}>
+      onSubmit={fetchFilters}>
       {(formik) => (
         <Container>
-          <Form onSubmit={()=>handleUserInput(formik.values.minPrice, formik.values.maxPrice)}>
+          <Form>
             <Row>
+              {handleUserInput(formik.values.minPrice, formik.values.maxPrice)}
               <Col>
                 <TextField label='Category' name='category' placeholder='Enter category' type='text' />
               </Col>

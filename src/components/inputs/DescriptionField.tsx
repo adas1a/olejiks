@@ -1,7 +1,6 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 import { Form } from 'react-bootstrap';
-import { AiFillDelete } from 'react-icons/all';
 
 interface DescriptionFieldInterface{
   label:string

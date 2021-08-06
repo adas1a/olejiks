@@ -1,6 +1,7 @@
-import { Carousel, Image, Button } from 'react-bootstrap';
+import { Button, Carousel, Image } from 'react-bootstrap';
 import React, { useState } from 'react';
 import FsLightbox from 'fslightbox-react';
+import { ImEnlarge } from 'react-icons/all';
 
 interface PhotoGalleryInterface{
   src?:string[];
@@ -26,14 +27,17 @@ const PhotoGallery:React.FC<PhotoGalleryInterface> = ({ src }) => {
                 onClick={()=>lightBoxHandler(index)}
               />
           </Carousel.Item>
-        ))}
+          ))}
       </Carousel>
+      {src!=undefined ?       <ImEnlarge className='dupa' onClick={()=>lightBoxHandler(i)}/>
+        : null }
       <FsLightbox
         toggler={toggler}
         sources={src}
         sourceIndex={i}
         type="image"
       />
+
     </div>
   );
 };
