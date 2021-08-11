@@ -7,7 +7,7 @@ import '../../styles/new-styles.css';
 import profilePic from '../../images/profilePicture.jpg';
 import UserInfoSection from './UserInfoSection/UserInfoSection';
 import LocationSection from './LocationSection/LocationSection';
-import ProductInfoSection from '../../components/ProductInfoSection/ProductInfoSection';
+import ProductInfoSection from './ProductInfoSection/ProductInfoSection';
 
 interface DetailsInterface {
   id: string

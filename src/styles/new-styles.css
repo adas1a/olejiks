@@ -57,10 +57,13 @@
 .dupa{
     position: relative;
     text-align: right;
-    z-index: 1000;
-    font-size: 30px;
-    left: 90%;
-    margin-top: -16%;
+    font-size: 50px;
+    z-index: 2;
+    left: 86%;
+    margin-top: -16vh;
+    padding: 5px;
+    cursor: pointer;
+    background-color:rgba(178,178,180,0.5);
 }
 
 

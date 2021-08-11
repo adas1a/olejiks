@@ -109,7 +109,7 @@ const AdvertisementTable:React.FC = () => {
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
       <h2>Filter options: </h2>
-      <FiltersForm />
+      <FiltersForm posts={posts} setPosts={setPosts} />
       <Table bordered hover striped responsive>
         <thead>
         <tr>

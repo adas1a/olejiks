@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Form, Formik } from 'formik';
 import axios from 'axios';
 import { TextField } from '../../../components/inputs/TextField';
+import { AdvertisementsResponse } from '../../../interfaces/AdvertisementsResponse';
 
 interface FiltersModelItem {
   minPrice: number,
@@ -19,21 +20,26 @@ const initialValues: FiltersModelItem = {
   maxPrice: 0,
 };
 
-const FiltersForm:React.FC = () => {
+interface Filterki {
+  posts:AdvertisementsResponse | undefined
+  setPosts: React.Dispatch<React.SetStateAction<AdvertisementsResponse | undefined>>
+}
+
+const FiltersForm:React.FC<Filterki> = ({posts, setPosts}) => {
   const [filters, setFilters] = useState<FiltersModelItem>();
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
 
   const fetchFilters = async (values:FiltersModelItem) => {
     try {
-      const { data } = await axios.get<FiltersModelItem>('/api/advertisement', {
+      const { data } = await axios.get<AdvertisementsResponse>('/api/advertisement', {
                 params:{
                   maxPrice,
                   minPrice,
                 },
               });
               console.log(data);
-              setFilters(data);
+              setPosts(data)
     } catch (error) {
       console.log('error: ', values);
       console.log('error: ', error.response.data.message);
@@ -57,6 +63,7 @@ const FiltersForm:React.FC = () => {
             <Row>
               {handleUserInput(formik.values.minPrice, formik.values.maxPrice)}
               <Col>
+                {/*zmienic textfield na nowy komponent bo potrzebne helpery formika*/}
                 <TextField label='Category' name='category' placeholder='Enter category' type='text' />
               </Col>
               <Col>
