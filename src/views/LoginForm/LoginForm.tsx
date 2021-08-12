@@ -16,9 +16,20 @@ const initialValues: LoginModel = {
   password: '',
 };
 
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
+// localStorage.setItem('token', token);
+// const token = localStorage.getItem('token');
+//
+// axios.defaults.headers = {Authorization: `Bearer ${token}`};
+// // localStorage.removeItem('token');
+
 const handleLogin = async (values:LoginModel) => {
   try {
-    const res = await axios.post('/api/auth/login', values);
+    const res = await axios.post('api/auth/login', values,{
+      headers:{
+        Authorization: `Bearer ${'xd'}`
+      },
+    });
     console.log(res);
   } catch (error) {
     console.log(error);

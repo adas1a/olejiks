@@ -20,17 +20,15 @@ const initialValues: FiltersModelItem = {
   maxPrice: 0,
 };
 
-interface Filterki {
-  posts: AdvertisementsResponse | undefined
+interface PropsInterface {
+  posts:AdvertisementsResponse | undefined
   setPosts: React.Dispatch<React.SetStateAction<AdvertisementsResponse | undefined>>
-  limit: number,
 }
 
-const FiltersForm:React.FC<Filterki> = ({posts, setPosts}) => {
+const FiltersForm:React.FC<PropsInterface> = ({ posts, setPosts }) => {
   const [filters, setFilters] = useState<FiltersModelItem>();
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
-  const [limit, setLimit] = useState(5);
 
   const fetchFilters = async (values:FiltersModelItem) => {
     try {
@@ -38,7 +36,6 @@ const FiltersForm:React.FC<Filterki> = ({posts, setPosts}) => {
                 params:{
                   maxPrice,
                   minPrice,
-                  limit,
                 },
               });
               console.log(data);
@@ -66,6 +63,7 @@ const FiltersForm:React.FC<Filterki> = ({posts, setPosts}) => {
             <Row>
               {handleUserInput(formik.values.minPrice, formik.values.maxPrice)}
               <Col>
+                {/*zmienic textfield na nowy komponent bo potrzebne helpery formika*/}
                 <TextField label='Category' name='category' placeholder='Enter category' type='text' />
               </Col>
               <Col>

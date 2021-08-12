@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import image from '../../images/car.jpg';
 
-
 const MainCategories = () => {
   return (
     <Container>

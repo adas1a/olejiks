@@ -65,8 +65,8 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
   };
 
   return (
-    <div>
-        <Form.Group  controlId={field.name} className="mb-3">
+    <>
+        <Form.Group  controlId={field.name} style={{margin:'8px'}}>
           <Form.Label>{label}</Form.Label>
           <Form.File   {...props}
                         onChange={handleChange}
@@ -81,7 +81,7 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
             )}
           </ErrorMessage>
         </Form.Group>
-      <Container>
+      <Container className='mb-3'>
         <Row>
           {list.map((item)=>(
             <PhotoList url={item.url} key={item.id} onClick={()=>handlePhotoDelete(item.id)} />
@@ -92,7 +92,7 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
           { list[3] === undefined ? <PhotoList onClick={handleAddPhoto}/> : null}
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
 export default PhotoInput;

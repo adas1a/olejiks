@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { Formik } from 'formik';
-import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
 import { useHistory } from 'react-router-dom';
+import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
 import { TextField } from '../../components/inputs/TextField';
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';

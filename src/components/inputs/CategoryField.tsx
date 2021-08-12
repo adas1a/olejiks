@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {ErrorMessage, useField} from 'formik';
-import {Form} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { ErrorMessage, useField } from 'formik';
+import { Form } from 'react-bootstrap';
 import Axios from 'axios';
 import CategoryInterface from '../../interfaces/CategoryInterface';
 
@@ -9,7 +9,7 @@ interface CategoryFieldInterface {
   name: string
 }
 
-export const CategoryField: React.FC<CategoryFieldInterface> = ({label, ...props}) => {
+export const CategoryField: React.FC<CategoryFieldInterface> = ({ label, ...props }) => {
 
     const [options, setOptions] = useState<CategoryInterface[]>([]);
 

@@ -16,7 +16,7 @@ const PhotoGallery:React.FC<PhotoGalleryInterface> = ({ src }) => {
   };
 
   return (
-    <div>
+    <div className='enlargeWrapper'>
       <Carousel interval={null} className='mt-4' onSlid={eventKey => setI(eventKey)}>
         {src?.map((photo, index)=>(
           <Carousel.Item key={photo}>
@@ -29,7 +29,7 @@ const PhotoGallery:React.FC<PhotoGalleryInterface> = ({ src }) => {
           </Carousel.Item>
           ))}
       </Carousel>
-      {src!=undefined ?       <ImEnlarge className='dupa' onClick={()=>lightBoxHandler(i)}/>
+      {src!=undefined ?       <ImEnlarge className='enlargeButton' onClick={()=>lightBoxHandler(i)}/>
         : null }
       <FsLightbox
         toggler={toggler}

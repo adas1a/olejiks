@@ -9,8 +9,8 @@ interface Photos {
 }
 const PhotoList:FC<Photos> = ({ onClick, url  }) => (
     <>
-      <Col xs={6} md={3} onClick={onClick} className=''>
-        {url === undefined ? null : <BsFillTrashFill className='FrontingDeleteButton' />}
+      <Col xs={6} md={3} onClick={onClick} className='enlargeWrapper'>
+        {url && <BsFillTrashFill className='FrontingDeleteButton' />}
         <Image src={ url !== undefined ? url : image} className='PhotoListStyles'/>
       </Col>
     </>

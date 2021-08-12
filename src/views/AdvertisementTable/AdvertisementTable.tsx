@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, Container, Image, Pagination, Table, Row, Col } from 'react-bootstrap';
+import { Container, Image, Pagination, Table } from 'react-bootstrap';
 import { Form } from 'formik';
 import { AdvertisementsResponse } from '../../interfaces/AdvertisementsResponse';
 import { TextField } from '../../components/inputs/TextField';
@@ -109,7 +109,7 @@ const AdvertisementTable:React.FC = () => {
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
       <h2>Filter options: </h2>
-      <FiltersForm posts={posts} setPosts={setPosts} limit={5}/>
+      <FiltersForm posts={posts} setPosts={setPosts} />
       <Table bordered hover striped responsive>
         <thead>
         <tr>
@@ -125,7 +125,7 @@ const AdvertisementTable:React.FC = () => {
           <tr key={postMap.id} onClick={()=>{
             history.push(`/details/${postMap.id}`);
           }}>
-            <td><Image className = 'photoAdsStyle' src={ postMap.photos?.slice(0,1).toString() } alt = 'Photo is not available' /></td>
+            <td className='photoWrap'><Image className = 'PhotoListStyles' src={ postMap.photos?.slice(0,1).toString() } alt = 'Photo is not available' /></td>
             <td>{postMap.title}</td>
             <td>{postMap.created?.split('T')[0]} at {postMap.created?.split('T')[1].split('.')[0]}</td>
             <td>{postMap.location}</td>
