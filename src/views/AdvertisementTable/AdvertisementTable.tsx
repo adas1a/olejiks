@@ -21,6 +21,8 @@ const AdvertisementTable:React.FC = () => {
   const [disablePrev, setDisablePrev] = useState(false);
   const [disableNext, setDisableNext] = useState(false);
   const [orderOption, setOrderOption] = useState('DESC');
+  const [maxPrice, setMaxPrice] = useState<undefined | number>();
+  const [minPrice, setMinPrice] = useState<undefined | number>();
   const history = useHistory();
   const active = currentPage;
 
@@ -33,6 +35,8 @@ const AdvertisementTable:React.FC = () => {
           limit,
           orderBy,
           orderOption,
+          minPrice,
+          maxPrice,
         }, 
           // headers: {
           //   Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -60,7 +64,7 @@ const AdvertisementTable:React.FC = () => {
   };
 
   const handlePaginationNext = ()=>{
-    if (currentPage >= Math.floor((posts?.count || 0) / limit)) {
+    if (currentPage >= pageLimit) {
       setDisableNext(true);
       setDisablePrev(false);
     }
@@ -90,7 +94,7 @@ const AdvertisementTable:React.FC = () => {
     }
   };
 
-  const pageLimit = Math.floor((posts?.count || 0) / limit);
+  const pageLimit = Math.ceil((posts?.count || 0) / limit);
 
   const items = [];
     for (let number = 1; number <= pageLimit; number++) {
@@ -100,7 +104,7 @@ const AdvertisementTable:React.FC = () => {
         </Pagination.Item>,
       );
     }
-
+  console.log('active', active);
   const paginationBasic = (
       <Pagination>{items}</Pagination>
   );
@@ -109,7 +113,7 @@ const AdvertisementTable:React.FC = () => {
     <Container className="container mt-5">
       <h1>Advertisements List</h1>
       <h2>Filter options: </h2>
-      <FiltersForm posts={posts} setPosts={setPosts} />
+      <FiltersForm posts={posts} setPosts={setPosts} currentPage={currentPage} minPrice={minPrice} maxPrice={maxPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}/>
       <Table bordered hover striped responsive>
         <thead>
         <tr>

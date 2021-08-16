@@ -17,25 +17,32 @@ interface FiltersModel {
 
 const initialValues: FiltersModelItem = {
   minPrice: 0,
-  maxPrice: 0,
+  maxPrice: 99999999,
 };
 
 interface PropsInterface {
   posts:AdvertisementsResponse | undefined
   setPosts: React.Dispatch<React.SetStateAction<AdvertisementsResponse | undefined>>
+  currentPage: number
+  minPrice: number | undefined
+  maxPrice: number | undefined
+  setMinPrice: React.Dispatch<React.SetStateAction<number | undefined>>
+  setMaxPrice: React.Dispatch<React.SetStateAction<number | undefined>>
 }
 
-const FiltersForm:React.FC<PropsInterface> = ({ posts, setPosts }) => {
+const FiltersForm:React.FC<PropsInterface> = ({ posts, setPosts , minPrice, maxPrice, setMinPrice, setMaxPrice}) => {
   const [filters, setFilters] = useState<FiltersModelItem>();
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [minPrice, setMinPrice] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const fetchFilters = async (values:FiltersModelItem) => {
     try {
-      const { data } = await axios.get<AdvertisementsResponse>('/api/advertisement', {
+      const { data } = await axios.get<AdvertisementsResponse>('/advertisement', {
                 params:{
                   maxPrice,
                   minPrice,
+                  limit,
+                  page: currentPage,
                 },
               });
               console.log(data);
