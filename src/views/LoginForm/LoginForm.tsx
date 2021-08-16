@@ -23,20 +23,17 @@ const initialValues: LoginModel = {
 const LoginForm:React.FC = () => {
 
   const history = useHistory();
-  const [accessToken, setAccessToken] = useState('');
-  axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
+  // axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
 
   const handleLogin = async (values:LoginModel) => {
     try {
-      const res = await axios.post('auth/login', values,{
-        headers:{
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setAccessToken(res?.data.accessToken);
-      localStorage.setItem('token', res?.data.accessToken);
-      console.log(res);
+      const res = await axios.post('auth/login', values);
+      const { accessToken } = res?.data;
+      axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
+      localStorage.setItem('token', accessToken);
     } catch (error) {
+      localStorage.removeItem('token');
+      axios.defaults.headers = {};
       console.log(error);
     }
     console.log(values);
