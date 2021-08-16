@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import App from './App';
 import './styles/index.scss';
 import reportWebVitals from './reportWebVitals';
+
+axios.defaults.baseURL='api/';
 
 ReactDOM.render(
   <React.StrictMode>

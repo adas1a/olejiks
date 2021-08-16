@@ -15,7 +15,7 @@ export const CategoryField: React.FC<CategoryFieldInterface> = ({ label, ...prop
 
     useEffect(()=>{
         const fetchData = async (): Promise<void> => {
-          const {data} = await Axios.get<CategoryInterface[]>('/api/dictionaries/category');
+          const {data} = await Axios.get<CategoryInterface[]>('/dictionaries/category');
             setOptions(data);
         };
         fetchData();

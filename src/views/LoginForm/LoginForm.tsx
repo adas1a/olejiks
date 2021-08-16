@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import { Formik, Form } from 'formik';
 import axios from 'axios';
-import { Redirect, useHistory } from 'react-router-dom';
-import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
+import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/inputs/TextField';
 
 interface LoginModel {
@@ -20,30 +19,33 @@ const initialValues: LoginModel = {
 // localStorage.setItem('token', token);
 // const token = localStorage.getItem('token');
 //
-// axios.defaults.headers = {Authorization: `Bearer ${token}`};
-// // localStorage.removeItem('token');
+// localStorage.removeItem('token');
+const LoginForm:React.FC = () => {
 
-const handleLogin = async (values:LoginModel) => {
-  try {
-    const res = await axios.post('api/auth/login', values,{
-      headers:{
-        Authorization: `Bearer ${'xd'}`
-      },
-    });
-    console.log(res);
-  } catch (error) {
-    console.log(error);
-  }
-  console.log(values);
-};
-
-const LoginForm = () => {
   const history = useHistory();
+  const [accessToken, setAccessToken] = useState('');
+  axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
+
+  const handleLogin = async (values:LoginModel) => {
+    try {
+      const res = await axios.post('auth/login', values,{
+        headers:{
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setAccessToken(res?.data.accessToken);
+      localStorage.setItem('token', res?.data.accessToken);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(values);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleLogin}>
-
       {(formik) => (
         <Container>
           <Form className='mt-3'>

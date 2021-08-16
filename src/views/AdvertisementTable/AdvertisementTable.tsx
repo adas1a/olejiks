@@ -27,7 +27,7 @@ const AdvertisementTable:React.FC = () => {
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
       try {
-        const { data } = await axios.get<AdvertisementsResponse>('/api/advertisement', {
+        const { data } = await axios.get<AdvertisementsResponse>('/advertisement', {
         params:{
           page:currentPage,
           limit,

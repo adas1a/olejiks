@@ -30,7 +30,7 @@ export const LocationInput: React.FC<LocationInputInterface> = ({ label, ...prop
   useEffect( () => {
     const fetchData = async ():Promise<void> => {
       try{
-        const {data} = await axios.get<CityModel[]>('/api/dictionaries/cities');
+        const {data} = await axios.get<CityModel[]>('/dictionaries/cities');
         data?.map((city)=>(
           setCities(prevCity => [...prevCity, city])
         ));

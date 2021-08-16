@@ -23,7 +23,7 @@ const initialValues:AddNewAdvertModel = {
 
 const handleSubmit = async (values:AddNewAdvertModel) => {
   try {
-    await axios.post('/api/advertisement', values);
+    await axios.post('/advertisement', values);
   } catch (error) {
     console.log('error: ', values);
     console.log('error: ', error.response.data.message);

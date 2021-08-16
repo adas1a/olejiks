@@ -28,7 +28,7 @@ const handleRegister = async (values:AddNewRegisterModel) => {
   // @ts-ignore
   event.preventDefault();
   try {
-    const res = await axios.post('/api/auth/register', values);
+    const res = await axios.post('/auth/register', values);
     console.log(res);
   } catch (error) {
     console.log(error);
