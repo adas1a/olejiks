@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, Container, Form, Row } from 'react-bootstrap';
+import { Button, Container, Row } from 'react-bootstrap';
 import axios from 'axios';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { AddNewFormValidation } from '../AddNewAdvert/AddNewFormValidation/AddNewFormValidation';
 import { TextField } from '../../components/inputs/TextField';
+import { toast } from 'react-toastify';
+import { RegisterValidation } from '../../YupValidationSchemas/YupValidationSchemas';
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
 // localStorage.setItem('token', token);
@@ -24,26 +25,28 @@ const initialValues: AddNewRegisterModel = {
   confirmPassword: '',
 };
 
-const handleRegister = async (values:AddNewRegisterModel) => {
-  // @ts-ignore
-  event.preventDefault();
-  try {
-    const res = await axios.post('/auth/register', values);
-    console.log(res);
-  } catch (error) {
-    console.log(error);
-  }
-  console.log(values);
-};
 
 const RegistrationForm = () => {
   const history = useHistory();
+
+  const handleRegister = async (values:AddNewRegisterModel) => {
+    try {
+      const res = await axios.post('auth/register', values);
+      toast.success(`${res?.data.message}`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(values);
+  };
+
   return (
   <Formik
     initialValues={initialValues}
-    validationSchema={AddNewFormValidation}
-    onSubmit={handleRegister}>
-
+    onSubmit={handleRegister}
+    validationSchema={RegisterValidation}
+  >
     {(formik) => (
       <Container>
         <Form className='mt-3'>
@@ -54,7 +57,7 @@ const RegistrationForm = () => {
             <Button variant='link' className='mb-3' onClick={() => history.replace('/login')}>Already registered? Login to your account.</Button>
           </Row>
           <Row>
-            <Button variant="primary" onClick={() => handleRegister(formik.values)} type="submit">
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Row>

@@ -5,7 +5,7 @@ import { Button, Container } from 'react-bootstrap';
 import  { TextField }  from '../../components/inputs/TextField';
 import { CategoryField } from '../../components/inputs/CategoryField';
 import { DescriptionField } from '../../components/inputs/DescriptionField';
-import { AddNewFormValidation } from './AddNewFormValidation/AddNewFormValidation';
+import { AddNewFormValidation } from '../../YupValidationSchemas/YupValidationSchemas';
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
 import PhotoInput from '../../components/inputs/PhotoInput';
 import { LocationInput } from '../../components/inputs/LocationInput';

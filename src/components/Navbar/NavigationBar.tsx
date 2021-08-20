@@ -5,12 +5,6 @@ import { Link } from 'react-router-dom';
 const NavigationBar: FC  = () => {
   return (
     <>
-      {/*<LinkContainer to={props.link} exact>*/}
-      {/*  <Button variant='secondary'>*/}
-      {/*    <ArrowRight /> {props.label}*/}
-      {/*  </Button>*/}
-      {/*</LinkContainer>*/}
-      {/*Todo change to router link*/}
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="/" className='ml-5'>Oleix</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

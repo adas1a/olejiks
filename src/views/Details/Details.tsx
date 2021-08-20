@@ -29,7 +29,8 @@ const Details:React.FC = () => {
   useEffect(()=>{
   const fetchDetails = async (): Promise<void> => {
     try {
-      const { data } = await Axios.get<DetailsInterface>(`/api/advertisement/${advertId}`);
+      const { data } = await Axios.get<DetailsInterface>(`advertisement/${advertId}`);
+      console.log(advertId);
       setDetails(data);
     }
     catch(e) {
@@ -38,6 +39,7 @@ const Details:React.FC = () => {
   };
   fetchDetails();
 }, [advertId]);
+  console.log(details);
   return(
       <Container className='mt-5'>
       <Row>

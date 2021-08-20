@@ -4,6 +4,8 @@ import { Formik, Form } from 'formik';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/inputs/TextField';
+import { toast } from 'react-toastify';
+import { LoginValidation } from '../../YupValidationSchemas/YupValidationSchemas';
 
 interface LoginModel {
   email: string,
@@ -15,15 +17,9 @@ const initialValues: LoginModel = {
   password: '',
 };
 
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
-// localStorage.setItem('token', token);
-// const token = localStorage.getItem('token');
-//
-// localStorage.removeItem('token');
 const LoginForm:React.FC = () => {
 
   const history = useHistory();
-  // axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
 
   const handleLogin = async (values:LoginModel) => {
     try {
@@ -32,17 +28,20 @@ const LoginForm:React.FC = () => {
       axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
       localStorage.setItem('token', accessToken);
     } catch (error) {
+      toast.error('Wrong email or password', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       localStorage.removeItem('token');
       axios.defaults.headers = {};
-      console.log(error);
     }
-    console.log(values);
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleLogin}>
+      onSubmit={handleLogin}
+      validationSchema={LoginValidation}
+     >
       {(formik) => (
         <Container>
           <Form className='mt-3'>

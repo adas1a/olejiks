@@ -19,6 +19,15 @@ export const AddNewFormValidation = Yup.object({
     .email('Email is invalid')
     .required('Email is required'),
   phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid, must be 9 numbers').required('Number is required'),
+});
 
-  // acceptTerms: Yup.bool().oneOf([true], 'Don\'t forget to accept'),
+export const LoginValidation = Yup.object({
+  email: Yup.string().required('Email is required'),
+  password: Yup.string().required('Enter password'),
+});
+
+export const RegisterValidation = Yup.object({
+  email: Yup.string().required('Email is required'),
+  password: Yup.string().required('Enter password'),
+  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Confirm password'),
 });
