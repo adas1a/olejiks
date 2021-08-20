@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Views from './views/Views';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -13,7 +13,7 @@ const App = () => (
     <BrowserRouter>
       <NavigationBar/>
       <Views/>
-      <ToastContainer/>
+      <ToastContainer position={toast.POSITION.BOTTOM_RIGHT}/>
     </BrowserRouter>
   );
 

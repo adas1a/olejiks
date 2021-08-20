@@ -4,8 +4,8 @@ import axios from 'axios';
 import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/inputs/TextField';
-import { toast } from 'react-toastify';
 import { RegisterValidation } from '../../YupValidationSchemas/YupValidationSchemas';
+import { toastify } from '../../utils/ToastifyVariants/ToastifyVariants';
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa29sYWoud2lkYW5rYUBnbWFpbC5jb20iLCJpZCI6IjU5NDUzYmVhLWRhNDQtNGM0Zi1iYTYxLThlNjhjZWVkNjU2NyIsImlhdCI6MTYyNjI5MDA1OSwiZXhwIjoxNjI2MjkzNjU5fQ.5jyKFYlhoVyh4KLZT67HwND7dy0BgjSy4MKwO1gNTyk';
 // localStorage.setItem('token', token);
@@ -25,18 +25,16 @@ const initialValues: AddNewRegisterModel = {
   confirmPassword: '',
 };
 
-
 const RegistrationForm = () => {
   const history = useHistory();
 
   const handleRegister = async (values:AddNewRegisterModel) => {
     try {
       const res = await axios.post('auth/register', values);
-      toast.success(`${res?.data.message}`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      toastify('success', res?.data.message);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      toastify('error', error.response.data.message);
     }
     console.log(values);
   };

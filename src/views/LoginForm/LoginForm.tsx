@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/inputs/TextField';
 import { toast } from 'react-toastify';
 import { LoginValidation } from '../../YupValidationSchemas/YupValidationSchemas';
+import { toastify } from '../../utils/ToastifyVariants/ToastifyVariants';
 
 interface LoginModel {
   email: string,
@@ -27,10 +28,11 @@ const LoginForm:React.FC = () => {
       const { accessToken } = res?.data;
       axios.defaults.headers = { Authorization: `Bearer ${accessToken}` };
       localStorage.setItem('token', accessToken);
+      toastify('success', res?.data.message);
+
     } catch (error) {
-      toast.error('Wrong email or password', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      toastify('error', error.response.data.message);
+
       localStorage.removeItem('token');
       axios.defaults.headers = {};
     }
