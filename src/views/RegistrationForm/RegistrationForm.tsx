@@ -54,7 +54,7 @@ const RegistrationForm = () => {
           <Row>
             <Button variant='link' className='mb-3' onClick={() => history.replace('/login')}>Already registered? Login to your account.</Button>
           </Row>
-          <Row>
+          <Row className='ml-1'>
             <Button variant="primary" type="submit">
               Submit
             </Button>

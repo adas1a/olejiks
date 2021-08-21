@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
 import { FileUploadResponseModel } from '../../interfaces/FileUploadResponseModel';
 import PhotoList from '../PhotoList/PhotoList';
+import { toastify } from '../../utils/ToastifyVariants/ToastifyVariants';
 
 interface PhotoInputInterface{
   label: string;
@@ -27,7 +28,7 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
     formData.append('file', file);
     if(file !== ''){
       try {
-        const res = await axios.post<FileUploadResponseModel>('/api/fileUpload', formData, {
+        const res = await axios.post<FileUploadResponseModel>('fileUpload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -42,6 +43,7 @@ const PhotoInput: React.FC<PhotoInputInterface> = ({ label, ...props }) => {
         setList(responseList);
       } catch (err) {
         console.error(err);
+
       }
     }
   };

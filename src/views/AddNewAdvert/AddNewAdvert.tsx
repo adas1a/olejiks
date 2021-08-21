@@ -9,6 +9,7 @@ import { AddNewFormValidation } from '../../YupValidationSchemas/YupValidationSc
 import { AddNewAdvertModel } from '../../interfaces/AddNewAdvertModel';
 import PhotoInput from '../../components/inputs/PhotoInput';
 import { LocationInput } from '../../components/inputs/LocationInput';
+import { toastify } from '../../utils/ToastifyVariants/ToastifyVariants';
 
 const initialValues:AddNewAdvertModel = {
   title: '',
@@ -27,6 +28,7 @@ const handleSubmit = async (values:AddNewAdvertModel) => {
   } catch (error) {
     console.log('error: ', values);
     console.log('error: ', error.response.data.message);
+    toastify('error', error.response.data.message);
   }
   console.log(values);
 };

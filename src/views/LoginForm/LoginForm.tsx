@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/inputs/TextField';
-import { toast } from 'react-toastify';
 import { LoginValidation } from '../../YupValidationSchemas/YupValidationSchemas';
 import { toastify } from '../../utils/ToastifyVariants/ToastifyVariants';
 
@@ -32,7 +31,6 @@ const LoginForm:React.FC = () => {
 
     } catch (error) {
       toastify('error', error.response.data.message);
-
       localStorage.removeItem('token');
       axios.defaults.headers = {};
     }
@@ -52,7 +50,7 @@ const LoginForm:React.FC = () => {
             <Row>
               <Button variant='link' className='mb-3' onClick={() => history.replace('/register')}>Not registered? Create an account</Button>
             </Row>
-            <Row>
+            <Row className='ml-1'>
               <Button variant="primary" type="submit">
                 Submit
               </Button>

@@ -44,7 +44,7 @@
     font-size: 22px;
     height: 60px;
 }
-.SearchBar > input[type='text'], button[type='submit']{
+.SearchBar > input[type='text'], .SearchBar > button[type='submit']{
     font-size: 22px;
     height: 60px;
 }
