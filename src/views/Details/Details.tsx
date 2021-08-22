@@ -47,7 +47,7 @@ const Details:React.FC = () => {
           <PhotoGallery src={details?.photos}/>
         </Col>
         <Col className='detailBg'>
-          <UserInfoSection userName={details?.email} userPhone={details?.phone}/>
+          <UserInfoSection userName={details?.email}/>
           <LocationSection key={null} city={details?.location}/>
         </Col>
       </Row>
