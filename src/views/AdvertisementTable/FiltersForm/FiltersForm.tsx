@@ -17,7 +17,7 @@ interface FiltersModel {
 
 const initialValues: FiltersModelItem = {
   minPrice: 0,
-  maxPrice: 99999999,
+  maxPrice: 999999999,
 };
 
 interface PropsInterface {
@@ -68,7 +68,6 @@ const FiltersForm:React.FC<PropsInterface> = ({ posts, setPosts , minPrice, maxP
         <Container>
           <Form>
             <Row>
-              {handleUserInput(formik.values.minPrice, formik.values.maxPrice)}
               <Col>
                 {/*zmienic textfield na nowy komponent bo potrzebne helpery formika*/}
                 <TextField label='Category' name='category' placeholder='Enter category' type='text' />
@@ -80,6 +79,7 @@ const FiltersForm:React.FC<PropsInterface> = ({ posts, setPosts , minPrice, maxP
                 <TextField label='Max Price' name='maxPrice' placeholder='Enter max price' type='number' />
               </Col>
               <Col>
+                {handleUserInput(formik.values.minPrice, formik.values.maxPrice)}
                 <Button className='mt-3' variant="primary" type="submit">
                   Submit
                 </Button>
